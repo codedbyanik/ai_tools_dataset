@@ -146,6 +146,7 @@ fig1 = px.line(monthly, x="date", y="users", color="tool_name",
                labels={"date": "Date", "users": "Global Users", "tool_name": "AI Tool"},
                title="Global User Growth by AI Tool")
 fig1.update_layout(**BASE, hovermode="x unified",
+                   height=600,
                    xaxis=dict(rangeslider=dict(visible=True)))
 fig1.update_xaxes(fixedrange=False)
 fig1.update_yaxes(fixedrange=False)
