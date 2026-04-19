@@ -145,7 +145,10 @@ monthly = fdf.groupby(["date", "tool_name"], as_index=False)["users"].mean()
 fig1 = px.line(monthly, x="date", y="users", color="tool_name",
                labels={"date": "Date", "users": "Global Users", "tool_name": "AI Tool"},
                title="Global User Growth by AI Tool")
-fig1.update_layout(**BASE, hovermode="x unified")
+fig1.update_layout(**BASE, hovermode="x unified",
+                   xaxis=dict(rangeslider=dict(visible=True)))
+fig1.update_xaxes(fixedrange=False)
+fig1.update_yaxes(fixedrange=False)
 st.plotly_chart(fig1, use_container_width=True)
 
 # ══════════════════════════════════════════
@@ -194,7 +197,9 @@ fig4 = px.scatter(scatter_df, x="users", y="market_share", color="tool_name",
                   labels={"users": "Global Users", "market_share": "Market Share (%)",
                           "tool_name": "AI Tool"},
                   title="Users vs Market Share per Tool")
-fig4.update_layout(**BASE)
+fig4.update_layout(**BASE, dragmode="zoom")
+fig4.update_xaxes(fixedrange=False)
+fig4.update_yaxes(fixedrange=False)
 st.plotly_chart(fig4, use_container_width=True)
 
 # ══════════════════════════════════════════
@@ -267,7 +272,10 @@ ms_df = fdf[fdf["market_share"] > 0].groupby(["date", "tool_name"], as_index=Fal
 fig8  = px.line(ms_df, x="date", y="market_share", color="tool_name",
                 labels={"date": "Date", "market_share": "Market Share (%)", "tool_name": "AI Tool"},
                 title="Market Share (%) Over Time")
-fig8.update_layout(**BASE, hovermode="x unified")
+fig8.update_layout(**BASE, hovermode="x unified",
+                   xaxis=dict(rangeslider=dict(visible=True)))
+fig8.update_xaxes(fixedrange=False)
+fig8.update_yaxes(fixedrange=False)
 st.plotly_chart(fig8, use_container_width=True)
 
 # ══════════════════════════════════════════
@@ -283,7 +291,9 @@ fig9  = px.area(total, x="date", y="users",
                 labels={"date": "Date", "users": "Total Global Users"},
                 title="Combined AI Tool Users Over Time",
                 color_discrete_sequence=["#a78bfa"])
-fig9.update_layout(**BASE)
+fig9.update_layout(**BASE, xaxis=dict(rangeslider=dict(visible=True)))
+fig9.update_xaxes(fixedrange=False)
+fig9.update_yaxes(fixedrange=False)
 st.plotly_chart(fig9, use_container_width=True)
 
 # ---------------- RAW DATA ----------------
